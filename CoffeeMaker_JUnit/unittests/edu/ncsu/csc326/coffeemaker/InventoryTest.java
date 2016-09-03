@@ -3,6 +3,7 @@ package edu.ncsu.csc326.coffeemaker;
 import junit.framework.TestCase;
 import edu.ncsu.csc326.coffeemaker.Inventory;
 import edu.ncsu.csc326.coffeemaker.exceptions.InventoryException;
+import edu.ncsu.csc326.coffeemaker.exceptions.RecipeException;
 
 public class InventoryTest extends TestCase {
 
@@ -17,6 +18,16 @@ public class InventoryTest extends TestCase {
 		this.inv = new Inventory();
 		this.r = new Recipe();
 		//TODO
+		try {
+			this.r.setAmtChocolate("10");
+			this.r.setAmtCoffee("10");
+			this.r.setAmtMilk("10");
+			this.r.setAmtSugar("10");
+			this.r.setName("Recipe #1");
+			this.r.setPrice("20");
+		} catch (RecipeException e) {
+			// TODO Auto-generated catch block
+		}
 		
 	}
 	
@@ -131,7 +142,17 @@ public class InventoryTest extends TestCase {
      */
     
     public void testEnoughIngredients(){
+    	assertTrue(this.inv.enoughIngredients(this.r) == true);
     	
+    	
+		try {
+			this.r.setAmtChocolate("100");
+			this.r.setAmtCoffee("100");
+			this.r.setAmtMilk("100");
+			this.r.setAmtSugar("100");
+		} catch (RecipeException e) {
+			// TODO Auto-generated catch block
+		}
     }
     
 }
