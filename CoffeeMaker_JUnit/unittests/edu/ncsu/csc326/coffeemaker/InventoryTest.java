@@ -17,7 +17,6 @@ public class InventoryTest extends TestCase {
 	public void setUp() {
 		this.inv = new Inventory();
 		this.r = new Recipe();
-		//TODO
 		try {
 			this.r.setAmtChocolate("10");
 			this.r.setAmtCoffee("10");
@@ -74,7 +73,7 @@ public class InventoryTest extends TestCase {
 			this.inv.addCoffee("5");
 			assertTrue(this.inv.getCoffee() == 20);
 		} catch (InventoryException e) {
-			fail("Expected Inventory Exception to be thrown");
+			fail("Inventory Exception should not be thrown");
 		}
 
 		try {
@@ -99,7 +98,7 @@ public class InventoryTest extends TestCase {
 			this.inv.addMilk("5");
 			assertTrue(this.inv.getMilk() == 20);
 		} catch (InventoryException e) {
-			fail("Expected Inventory Exception to be thrown");
+			fail("Inventory Exception should not be thrown");
 		}
 
 		try {
@@ -124,7 +123,7 @@ public class InventoryTest extends TestCase {
 			this.inv.addSugar("5");
 			assertTrue(this.inv.getSugar() == 20);
 		} catch (InventoryException e) {
-			fail("Expected Inventory Exception to be thrown");
+			fail("Inventory Exception should not be thrown");
 		}
 
 		try {
@@ -149,7 +148,7 @@ public class InventoryTest extends TestCase {
 			this.inv.addChocolate("5");
 			assertTrue(this.inv.getChocolate() == 20);
 		} catch (InventoryException e) {
-			fail("Expected Inventory Exception to be thrown");
+			fail("Inventory Exception should not be thrown");
 		}
 
 		try {
