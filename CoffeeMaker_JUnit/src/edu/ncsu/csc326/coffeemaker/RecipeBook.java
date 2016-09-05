@@ -1,19 +1,19 @@
 package edu.ncsu.csc326.coffeemaker;
 
 public class RecipeBook {
-	
+
 	/** Array of recipes in coffee maker*/
 	private Recipe [] recipeArray;
 	/** Number of recipes in coffee maker */
 	private final int NUM_RECIPES = 4; 
-	
+
 	/**
 	 * Default constructor for a RecipeBook.
 	 */
 	public RecipeBook() {
 		recipeArray = new Recipe[NUM_RECIPES];
 	}
-	
+
 	/**
 	 * Returns the recipe array.
 	 * @param r
@@ -22,7 +22,7 @@ public class RecipeBook {
 	public synchronized Recipe[] getRecipes() {
 		return recipeArray;
 	}
-	
+
 	public synchronized boolean addRecipe(Recipe r) {
 		//Assume recipe doesn't exist in the array until 
 		//find out otherwise
@@ -55,15 +55,17 @@ public class RecipeBook {
 	 * @return String
 	 */
 	public synchronized String deleteRecipe(int recipeToDelete) {
-		if (recipeArray[recipeToDelete] != null) {
-			String recipeName = recipeArray[recipeToDelete].getName();
+		String recipeName = null;
+		try {
+			recipeName = recipeArray[recipeToDelete].getName();
 			recipeArray[recipeToDelete] = new Recipe();
 			return recipeName;
-		} else {
-			return null;
+		}
+		catch(ArrayIndexOutOfBoundsException e) {
+			return recipeName;
 		}
 	}
-	
+
 	/**
 	 * Returns the name of the recipe edited at the position specified
 	 * and null if the recipe does not exist.
@@ -72,13 +74,18 @@ public class RecipeBook {
 	 * @return String
 	 */
 	public synchronized String editRecipe(int recipeToEdit, Recipe newRecipe) {
-		if (recipeArray[recipeToEdit] != null) {
-			String recipeName = recipeArray[recipeToEdit].getName();
+		String recipeName = null;
+		try {
+			recipeName = recipeArray[recipeToEdit].getName();
+			
+			//The line below should be removed since it loses the name
+			// of the newly added recipe
 			newRecipe.setName("");
 			recipeArray[recipeToEdit] = newRecipe;
 			return recipeName;
-		} else {
-			return null;
+		}
+		catch(ArrayIndexOutOfBoundsException e) {
+			return recipeName;
 		}
 	}
 

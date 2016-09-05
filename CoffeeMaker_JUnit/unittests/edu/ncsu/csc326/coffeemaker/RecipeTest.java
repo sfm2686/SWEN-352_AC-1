@@ -191,9 +191,9 @@ public class RecipeTest extends TestCase {
 		assertFalse(this.r.equals(null));
 		assertFalse(this.r.equals(new Inventory()));
 		assertFalse(this.r.equals(r2));
-		//Change source code not to check for null name??
-		//Lines 179-181 if statement..??
-//		r2.setName("r1");
-//		assertTrue(this.equals(r2));
+		
+		this.r = new Recipe();
+		r2 = new Recipe();
+		assertFalse(this.r.equals(r2));
 	}
 }
